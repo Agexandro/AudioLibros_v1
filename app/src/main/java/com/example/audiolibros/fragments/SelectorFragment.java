@@ -1,7 +1,10 @@
 package com.example.audiolibros.fragments;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,9 +43,40 @@ private Vector<Libro> vectorLibros;
     View vista = inflador.inflate(R.layout.fragment_selector, contenedor, false);
     recyclerView = (RecyclerView) vista.findViewById(R.id.recycler_view);
     recyclerView.setLayoutManager(new GridLayoutManager(actividad, 2));
-
     recyclerView.setAdapter(adaptador);
-    adaptador.setOnClickListener(new View.OnClickListener(){
+
+    adaptador.setOnItemLongClickListener(new View.OnLongClickListener(){
+        public boolean onLongClick(final View v){
+            final  int id = recyclerView.getChildAdapterPosition(v);
+            AlertDialog.Builder menu = new AlertDialog.Builder(actividad);
+            CharSequence[] opciones = {"Compartir","Borrar","Insertar"};
+            menu.setItems(opciones, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int opcion) {
+                    switch (opcion){
+                        case 0:
+                            Libro libro = vectorLibros.elementAt(id);
+                            Intent i = new Intent(Intent.ACTION_SEND);
+                            i.setType("Text/plain");
+                            i.putExtra(Intent.EXTRA_SUBJECT,libro.titulo);
+                            i.putExtra(Intent.EXTRA_TEXT,libro.urlAudio);
+                            startActivity(Intent.createChooser(i,"Compartir"));
+                            break;
+                        case 1:
+                            vectorLibros.remove(id);
+                            adaptador.notifyDataSetChanged();
+                            break;
+                        case 3:
+                            vectorLibros.add(vectorLibros.elementAt(id));
+                            adaptador.notifyDataSetChanged();
+                            break;
+                    }
+                }
+            });
+            menu.create().show();
+            return true;
+        }
+    });
+    adaptador.setOnItemClickListener(new View.OnClickListener(){
         @Override
         public void onClick(View v){
             ((MainActivity) actividad).mostrarDetalle(recyclerView.getChildAdapterPosition(v));

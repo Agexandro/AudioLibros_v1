@@ -17,14 +17,15 @@ public class AdaptadorLibros extends RecyclerView.Adapter<AdaptadorLibros.ViewHo
     protected Vector<Libro> vectorLibros;
     private Context contexto;
     private View.OnClickListener onClickListener;
+    private View.OnLongClickListener onLongClickListener;
 
-    public AdaptadorLibros(Context contexto,Vector<Libro> vectorLibros) {
+    public AdaptadorLibros(Context contexto, Vector<Libro> vectorLibros) {
         inflador = (LayoutInflater) contexto.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.vectorLibros = vectorLibros;
         this.contexto = contexto;
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView portada;
         public TextView titulo;
 
@@ -36,9 +37,10 @@ public class AdaptadorLibros extends RecyclerView.Adapter<AdaptadorLibros.ViewHo
         }
     }
 
-    public  ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
-        View v = inflador.inflate(R.layout.elemento_selector,null);
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View v = inflador.inflate(R.layout.elemento_selector, null);
         v.setOnClickListener(onClickListener);
+        v.setOnLongClickListener(onLongClickListener);
         return new ViewHolder(v);
     }
 
@@ -55,7 +57,16 @@ public class AdaptadorLibros extends RecyclerView.Adapter<AdaptadorLibros.ViewHo
         return vectorLibros.size();
     }
 
-    public void setOnClickListener(View.OnClickListener onClickListener){
+    public void setOnClickListener(View.OnClickListener onClickListener) {
         this.onClickListener = onClickListener;
+    }
+
+    public void setOnItemClickListener(View.OnClickListener onClickListener)
+    {
+        this.onClickListener = onClickListener;
+    }
+
+    public void setOnItemLongClickListener(View.OnLongClickListener onLongClickListener) {
+        this.onLongClickListener = onLongClickListener;
     }
 }
