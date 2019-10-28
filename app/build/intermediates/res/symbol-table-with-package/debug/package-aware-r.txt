@@ -827,6 +827,10 @@ id line1
 id line3
 id listMode
 id list_item
+id menu_acerca
+id menu_buscar
+id menu_preferencias
+id menu_ultimo
 id message
 id middle
 id multiply
@@ -964,6 +968,8 @@ layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
 layout support_simple_spinner_dropdown_item
+menu menu_main
+menu menu_selector
 mipmap ic_launcher
 mipmap ic_launcher_round
 string abc_action_bar_home_description

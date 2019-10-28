@@ -7,9 +7,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -44,6 +46,8 @@ private Vector<Libro> vectorLibros;
     recyclerView = (RecyclerView) vista.findViewById(R.id.recycler_view);
     recyclerView.setLayoutManager(new GridLayoutManager(actividad, 2));
     recyclerView.setAdapter(adaptador);
+
+    setHasOptionsMenu(true);
 
     adaptador.setOnItemLongClickListener(new View.OnLongClickListener(){
         public boolean onLongClick(final View v){
@@ -85,4 +89,21 @@ private Vector<Libro> vectorLibros;
     return vista;
 }
 
+    @Override
+    public void onCreateOptionsMenu( Menu menu,  MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_selector,menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected( MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.menu_ultimo){
+            ((MainActivity) actividad).irUltimoVisitado();
+            return true;
+        }else if(id == R.id.menu_buscar){
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
