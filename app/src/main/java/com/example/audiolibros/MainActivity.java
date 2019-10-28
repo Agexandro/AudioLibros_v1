@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         if (id >= 0) {
             mostrarDetalle(id);
         } else {
-            Toast.makeText(this, "Sin última vista", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Sin última vista no sirve alv", Toast.LENGTH_LONG).show();
         }
     }
 }
