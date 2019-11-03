@@ -22,6 +22,7 @@ import com.example.audiolibros.Aplicacion;
 import com.example.audiolibros.Libro;
 import com.example.audiolibros.MainActivity;
 import com.example.audiolibros.R;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Vector;
 
@@ -66,12 +67,26 @@ private Vector<Libro> vectorLibros;
                             startActivity(Intent.createChooser(i,"Compartir"));
                             break;
                         case 1:
-                            vectorLibros.remove(id);
-                            adaptador.notifyDataSetChanged();
+                            Snackbar.make(v,"¿Estas Seguro?",Snackbar.LENGTH_LONG).setAction("Si", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    vectorLibros.remove(id);
+                                    adaptador.notifyDataSetChanged();
+                                }
+                            }).show();
+
                             break;
-                        case 3:
+                        case 2:
                             vectorLibros.add(vectorLibros.elementAt(id));
                             adaptador.notifyDataSetChanged();
+                            Snackbar.make(v,"Libro insertado",Snackbar.LENGTH_INDEFINITE).setAction("Ok", new
+                                    View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+
+                                        }
+                                    }).show();
+
                             break;
                     }
                 }

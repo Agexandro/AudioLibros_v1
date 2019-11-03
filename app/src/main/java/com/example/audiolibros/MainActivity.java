@@ -17,6 +17,8 @@ import android.widget.Toast;
 
 import com.example.audiolibros.fragments.DetalleFragment;
 import com.example.audiolibros.fragments.SelectorFragment;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
             SelectorFragment primerFragment = new SelectorFragment();
             getSupportFragmentManager().beginTransaction().add(R.id.contenedor_pequeño, primerFragment).commit();
         }
+
     }
 
     public void mostrarDetalle(int id) {

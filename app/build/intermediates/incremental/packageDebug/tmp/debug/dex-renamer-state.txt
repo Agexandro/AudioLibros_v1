@@ -1,4 +1,4 @@
-#Mon Oct 28 08:50:10 CST 2019
+#Sat Nov 02 21:12:18 CST 2019
 base.0=/home/alejandro/AudioLibros_v1/app/build/intermediates/dex/debug/mergeDexDebug/out/classes.dex
 path.0=classes.dex
 renamed.0=classes.dex
